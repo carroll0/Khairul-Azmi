@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khairul Azmi - HR Data Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        
+        nav {
+            background: #2d3748;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin: 4rem 0;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .about-content {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+        
+        .projects {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img,
+        .project-image video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-image video {
+            display: block;
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-content h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tag {
+            background: #e6f2ff;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .project-content ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .project-content li {
+            margin: 0.5rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .contact-info {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .skills {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Khairul Azmi</h1>
+        <p>HR Data Analyst | Power BI Developer </p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I'm a Junior Data Analyst specializing in HR analytics with experience in building interactive dashboards and deriving actionable insights from workforce data. I'm passionate about using data to optimize HR processes and support strategic decision-making.</p>
+                <p style="margin-top: 1rem;">Currently, I work on projects involving salary analysis, overtime costing, demographic insights, and recruitment metrics using Power BI, SQL, and Excel.</p>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills">
+                <div class="skill-category">
+                    <h3>Data Visualization</h3>
+                    <ul>
+                        <li>Power BI (DAX, Power Query)</li>
+                        <li>Excel (Pivot Tables, Charts)</li>
+                        <li>Dashboard Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Analysis</h3>
+                    <ul>
+                        <li>SQL</li>
+                        <li>Python (Pandas, NumPy)</li>
+                        <li>Statistical Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>HR Analytics</h3>
+                    <ul>
+                        <li>Workforce Planning</li>
+                        <li>Compensation Analysis</li>
+                        <li>Recruitment Metrics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Option 1: Using GIF (Recommended for autoplay/loop) -->
+                        <img src="dashboard-salary.gif" alt="Salary Dashboard Demo">
+                        
+                        <!-- Option 2: Using MP4 Video (Better quality, smaller file)
+                        <video autoplay loop muted playsinline>
+                            <source src="dashboard-salary.mp4" type="video/mp4">
+                            Your browser does not support video.
+                        </video>
+                        -->
+                        
+                        <!-- Option 3: Static screenshot as fallback
+                        <img src="dashboard-salary.png" alt="Salary Dashboard">
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Salary & Overtime Costing Dashboard</h3>
+                        <div class="project-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">DAX</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                        <p><strong>Business Problem:</strong> The HR team needed real-time visibility into salary costs and overtime expenses to identify cost-saving opportunities and ensure budget compliance.</p>
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>Built an interactive Power BI dashboard tracking salary and overtime costs across departments</li>
+                            <li>Created DAX measures for YoY comparisons and trend analysis</li>
+                            <li>Implemented drill-down features for department and employee-level insights</li>
+                        </ul>
+                        <p><strong>Impact:</strong> Reduced overtime costs by 15% through identification of patterns and enabled proactive budget management.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Option 1: Using GIF -->
+                        <img src="dashboard-demographics.gif" alt="Demographics Dashboard Demo">
+                        
+                        <!-- Option 2: Using MP4 Video
+                        <video autoplay loop muted playsinline>
+                            <source src="dashboard-demographics.mp4" type="video/mp4">
+                        </video>
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Workforce Demographics Analysis</h3>
+                        <div class="project-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Excel</span>
+                            <span class="tag">Data Modeling</span>
+                        </div>
+                        <p><strong>Business Problem:</strong> Leadership needed comprehensive insights into workforce composition to support diversity initiatives and succession planning.</p>
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>Designed dashboard visualizing age distribution, gender ratios, and tenure across teams</li>
+                            <li>Integrated multiple data sources using Power Query</li>
+                            <li>Created automated monthly refresh process</li>
+                        </ul>
+                        <p><strong>Impact:</strong> Provided data-driven insights that informed diversity hiring strategies and identified succession planning gaps.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Option 1: Using GIF -->
+                        <img src="dashboard-recruitment.gif" alt="Recruitment Dashboard Demo">
+                        
+                        <!-- Option 2: Using MP4 Video
+                        <video autoplay loop muted playsinline>
+                            <source src="dashboard-recruitment.mp4" type="video/mp4">
+                        </video>
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Recruitment Metrics Dashboard</h3>
+                        <div class="project-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">KPI Tracking</span>
+                        </div>
+                        <p><strong>Business Problem:</strong> Recruitment team lacked visibility into hiring pipeline efficiency and time-to-fill metrics.</p>
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>Developed dashboard tracking key recruitment KPIs (time-to-fill, source effectiveness, offer acceptance rate)</li>
+                            <li>Implemented conditional formatting to highlight bottlenecks</li>
+                            <li>Created custom measures for recruitment funnel analysis</li>
+                        </ul>
+                        <p><strong>Impact:</strong> Improved time-to-fill by 20% through identification of process inefficiencies.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p>I'm always open to discussing new opportunities and collaborations in HR analytics.</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com">Email</a>
+                    <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+                    <a href="https://github.com/yourusername">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
