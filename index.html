@@ -209,7 +209,38 @@
         .btn:hover {
             background: #5568d3;
         }
+        .btn-secondary {
+            background: #48bb78;
+        }
         
+        .btn-secondary:hover {
+            background: #38a169;
+        }
+        
+        .code-preview {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .code-preview code {
+            color: #68d391;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
         .contact-info {
             background: #f7fafc;
             padding: 2rem;
@@ -349,36 +380,16 @@
                 </div>
                 
                 <div class="project-card">
-    <div class="project-image">
-        <img src="excel-demo-preview.gif" alt="Excel Automation Demo">
-        <!-- Or use a screenshot if you don't have a GIF yet -->
-    </div>
-    <div class="project-content">
-        <h3>Excel VBA: HR Data Automation</h3>
-        <div class="project-tags">
-            <span class="tag">VBA</span>
-            <span class="tag">Excel</span>
-            <span class="tag">Automation</span>
-            <span class="tag">Data Cleaning</span>
-        </div>
-        <p><strong>Business Problem:</strong> Manual HR data cleaning from various sources took 3 hours monthly and contained formatting inconsistencies causing downstream errors.</p>
-        <p><strong>Solution:</strong></p>
-        <ul>
-            <li>Built VBA macro to automatically standardize employee data formats</li>
-            <li>Implemented ID normalization, name case correction, department expansion</li>
-            <li>Added salary formatting, date standardization, and validation rules</li>
-            <li>Created one-click processing with error handling</li>
-        </ul>
-        <p><strong>Impact:</strong> Reduced processing time from 3 hours to 30 seconds (99% time savings), eliminated formatting errors, ensured data consistency across all reports.</p>
-        
-        <a href="excelautodemo.html" class="btn" target="_blank">
-            ✨ Try Interactive Demo
-        </a>
-        <a href="excel-template.xlsm" class="btn btn-secondary">
-            Download Excel Template
-        </a>
-    </div>
-</div>
+                    <div class="project-image">
+                        <!-- Option 1: Using GIF -->
+                        <img src="dashboard-demographics.gif" alt="Demographics Dashboard Demo">
+                        
+                        <!-- Option 2: Using MP4 Video
+                        <video autoplay loop muted playsinline>
+                            <source src="dashboard-demographics.mp4" type="video/mp4">
+                        </video>
+                        -->
+                    </div>
                     <div class="project-content">
                         <h3>Workforce Demographics Analysis</h3>
                         <div class="project-tags">
@@ -424,6 +435,354 @@
                         </ul>
                         <p><strong>Impact:</strong> Improved time-to-fill by 20% through identification of process inefficiencies.</p>
                         <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content" style="padding: 0;">
+                        <!-- Interactive Demo Header -->
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; text-align: center;">
+                            <h3 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.8rem;">Excel VBA: HR Data Automation</h3>
+                            <p style="margin: 0; opacity: 0.95;">Interactive Demo - Watch messy data transform instantly!</p>
+                        </div>
+                        
+                        <!-- Demo Container -->
+                        <div style="padding: 2rem; background: #f7fafc;">
+                            <!-- Status Badge -->
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                <div id="demo-status-badge" style="display: inline-block; background: #fed7d7; color: #c53030; padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600;">
+                                    ⚠ Raw Messy Data
+                                </div>
+                            </div>
+
+                            <!-- Excel-like Table -->
+                            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 1.5rem;">
+                                <!-- Excel Header -->
+                                <div style="background: #e2e8f0; border-bottom: 1px solid #cbd5e0; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="display: flex; gap: 0.25rem;">
+                                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #fc8181;"></div>
+                                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #fbd38d;"></div>
+                                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #68d391;"></div>
+                                    </div>
+                                    <span id="demo-filename" style="font-family: monospace; font-size: 0.85rem; color: #4a5568; margin-left: 0.5rem;">
+                                        employee_data_raw.xlsx
+                                    </span>
+                                </div>
+
+                                <!-- Table -->
+                                <div style="overflow-x: auto;">
+                                    <table style="width: 100%; border-collapse: collapse;">
+                                        <thead>
+                                            <tr style="background: #667eea; color: white;">
+                                                <th style="padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Employee ID</th>
+                                                <th style="padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Name</th>
+                                                <th style="padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Department</th>
+                                                <th style="padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Salary</th>
+                                                <th style="padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Hire Date</th>
+                                                <th style="padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="demo-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Issues/Success Summary -->
+                            <div id="demo-summary" style="margin-bottom: 1.5rem;"></div>
+
+                            <!-- Action Buttons -->
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                <button id="demo-process-btn" onclick="processDemoData()" 
+                                    style="background: #667eea; color: white; font-weight: bold; padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); transition: all 0.3s;">
+                                    ✨ Run Automation Magic
+                                </button>
+                                <button id="demo-reset-btn" onclick="resetDemoData()" 
+                                    style="display: none; background: #718096; color: white; font-weight: bold; padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(113, 128, 150, 0.4); transition: all 0.3s;">
+                                    🔄 Reset to Messy Data
+                                </button>
+                            </div>
+
+                            <!-- What This Does -->
+                            <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="font-weight: bold; color: #2d3748; margin-bottom: 1rem;">What This Automation Does:</h4>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; font-size: 0.9rem; color: #4a5568;">
+                                    <div>
+                                        <h5 style="font-weight: 600; color: #667eea; margin-bottom: 0.5rem;">📊 Data Cleaning:</h5>
+                                        <ul style="margin-left: 1.25rem; line-height: 1.6;">
+                                            <li>ID normalization & padding</li>
+                                            <li>Name case correction</li>
+                                            <li>Department standardization</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5 style="font-weight: 600; color: #667eea; margin-bottom: 0.5rem;">💎 Formatting:</h5>
+                                        <ul style="margin-left: 1.25rem; line-height: 1.6;">
+                                            <li>Currency formatting</li>
+                                            <li>Date standardization</li>
+                                            <li>Status consistency</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-style: italic; color: #718096; font-size: 0.9rem;">
+                                    💡 <strong>Real Impact:</strong> This automation reduced monthly data processing time from 
+                                    <span style="color: #e53e3e; font-weight: bold;">3 hours</span> to 
+                                    <span style="color: #38a169; font-weight: bold;">30 seconds</span>, 
+                                    eliminating manual errors and ensuring consistent data quality.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Project Tags at Bottom -->
+                        <div style="padding: 1.5rem 2rem; background: white; border-top: 1px solid #e2e8f0;">
+                            <div class="project-tags">
+                                <span class="tag">VBA</span>
+                                <span class="tag">Excel</span>
+                                <span class="tag">Automation</span>
+                                <span class="tag">Data Cleaning</span>
+                            </div>
+                            <p style="margin-top: 1rem; color: #718096; font-size: 0.9rem;">
+                                <strong>Business Problem:</strong> Manual data cleaning took 3 hours monthly and was prone to errors.
+                            </p>
+                            <p style="margin-top: 0.5rem; color: #718096; font-size: 0.9rem;">
+                                <strong>Solution:</strong> Built VBA automation to standardize employee data formats, implement validation, and create one-click processing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    const messyDemoData = [
+                        { id: '001', name: 'john doe', dept: 'hr', salary: '5000', date: '1/15/2024', status: 'active' },
+                        { id: '2', name: 'JANE SMITH', dept: 'IT', salary: '6500.00', date: '15-Feb-2024', status: 'Active' },
+                        { id: '03', name: 'Bob Johnson', dept: 'finance', salary: '5500', date: '2024/03/10', status: 'ACTIVE' },
+                        { id: '4', name: 'alice brown', dept: 'HR', salary: '4800.5', date: '04/01/24', status: 'active' },
+                        { id: '005', name: 'Charlie Davis', dept: 'it', salary: '7000', date: '5-15-2024', status: 'Active' },
+                    ];
+
+                    const cleanDemoData = [
+                        { id: 'EMP-001', name: 'John Doe', dept: 'Human Resources', salary: '$5,000.00', date: '2024-01-15', status: 'Active' },
+                        { id: 'EMP-002', name: 'Jane Smith', dept: 'Information Technology', salary: '$6,500.00', date: '2024-02-15', status: 'Active' },
+                        { id: 'EMP-003', name: 'Bob Johnson', dept: 'Finance', salary: '$5,500.00', date: '2024-03-10', status: 'Active' },
+                        { id: 'EMP-004', name: 'Alice Brown', dept: 'Human Resources', salary: '$4,800.50', date: '2024-04-01', status: 'Active' },
+                        { id: 'EMP-005', name: 'Charlie Davis', dept: 'Information Technology', salary: '$7,000.00', date: '2024-05-15', status: 'Active' },
+                    ];
+
+                    let isDemoProcessed = false;
+
+                    function renderDemoTable(data) {
+                        const tbody = document.getElementById('demo-table-body');
+                        tbody.innerHTML = '';
+                        
+                        data.forEach((row) => {
+                            const tr = document.createElement('tr');
+                            tr.style.borderBottom = '1px solid #e2e8f0';
+                            tr.style.background = isDemoProcessed ? '#f0fff4' : '#fff5f5';
+                            tr.style.transition = 'all 0.5s';
+                            
+                            tr.innerHTML = `
+                                <td style="padding: 0.75rem; font-family: monospace; color: ${isDemoProcessed ? '#22543d' : '#c53030'}; font-weight: ${isDemoProcessed ? '600' : '400'};">${row.id}</td>
+                                <td style="padding: 0.75rem; font-weight: ${isDemoProcessed ? '600' : '400'};">${row.name}</td>
+                                <td style="padding: 0.75rem;">${row.dept}</td>
+                                <td style="padding: 0.75rem; font-family: monospace;">${row.salary}</td>
+                                <td style="padding: 0.75rem; font-family: monospace; font-size: 0.85rem;">${row.date}</td>
+                                <td style="padding: 0.75rem;">
+                                    <span style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: ${isDemoProcessed ? '#c6f6d5' : '#e2e8f0'}; color: ${isDemoProcessed ? '#22543d' : '#2d3748'};">
+                                        ${row.status}
+                                    </span>
+                                </td>
+                            `;
+                            
+                            tbody.appendChild(tr);
+                        });
+                    }
+
+                    function updateDemoSummary() {
+                        const summaryDiv = document.getElementById('demo-summary');
+                        
+                        if (!isDemoProcessed) {
+                            summaryDiv.innerHTML = `
+                                <div style="background: #fff5f5; border: 2px solid #feb2b2; border-radius: 8px; padding: 1rem;">
+                                    <h4 style="font-weight: bold; color: #c53030; margin-bottom: 0.5rem; font-size: 1rem;">⚠ Data Quality Issues Detected:</h4>
+                                    <ul style="color: #742a2a; font-size: 0.85rem; margin-left: 1.25rem; line-height: 1.6;">
+                                        <li>Inconsistent ID formatting (001, 2, 03, 4, 005)</li>
+                                        <li>Mixed case names (lowercase, UPPERCASE, Title Case)</li>
+                                        <li>Inconsistent department names (hr vs HR vs Human Resources)</li>
+                                        <li>Inconsistent salary formatting (5000 vs 6500.00)</li>
+                                        <li>Multiple date formats (1/15/2024, 15-Feb-2024, 2024/03/10)</li>
+                                    </ul>
+                                </div>
+                            `;
+                        } else {
+                            summaryDiv.innerHTML = `
+                                <div style="background: #f0fff4; border: 2px solid #9ae6b4; border-radius: 8px; padding: 1rem;">
+                                    <h4 style="font-weight: bold; color: #22543d; margin-bottom: 0.5rem; font-size: 1rem;">✓ Automation Completed Successfully!</h4>
+                                    <ul style="color: #22543d; font-size: 0.85rem; margin-left: 1.25rem; line-height: 1.6;">
+                                        <li>✓ Standardized all employee IDs to EMP-XXX format</li>
+                                        <li>✓ Applied proper name capitalization (Title Case)</li>
+                                        <li>✓ Expanded department abbreviations to full names</li>
+                                        <li>✓ Formatted all salaries with $ symbol and commas</li>
+                                        <li>✓ Standardized all dates to YYYY-MM-DD format</li>
+                                    </ul>
+                                </div>
+                            `;
+                        }
+                    }
+
+                    function processDemoData() {
+                        const statusBadge = document.getElementById('demo-status-badge');
+                        const processBtn = document.getElementById('demo-process-btn');
+                        
+                        statusBadge.innerHTML = '<span style="display: inline-flex; align-items: center; gap: 0.5rem;"><span style="display: inline-block; width: 16px; height: 16px; border: 2px solid #d69e2e; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span> Processing data...</span>';
+                        statusBadge.style.background = '#fefcbf';
+                        statusBadge.style.color = '#744210';
+                        
+                        processBtn.disabled = true;
+                        processBtn.style.opacity = '0.5';
+                        processBtn.style.cursor = 'not-allowed';
+                        
+                        setTimeout(() => {
+                            isDemoProcessed = true;
+                            renderDemoTable(cleanDemoData);
+                            updateDemoSummary();
+                            
+                            statusBadge.innerHTML = '✓ Data Cleaned & Structured';
+                            statusBadge.style.background = '#c6f6d5';
+                            statusBadge.style.color = '#22543d';
+                            
+                            document.getElementById('demo-filename').textContent = 'employee_data_CLEANED.xlsx';
+                            document.getElementById('demo-process-btn').style.display = 'none';
+                            document.getElementById('demo-reset-btn').style.display = 'inline-block';
+                        }, 1500);
+                    }
+
+                    function resetDemoData() {
+                        isDemoProcessed = false;
+                        renderDemoTable(messyDemoData);
+                        updateDemoSummary();
+                        
+                        const statusBadge = document.getElementById('demo-status-badge');
+                        statusBadge.innerHTML = '⚠ Raw Messy Data';
+                        statusBadge.style.background = '#fed7d7';
+                        statusBadge.style.color = '#c53030';
+                        
+                        document.getElementById('demo-filename').textContent = 'employee_data_raw.xlsx';
+                        
+                        const processBtn = document.getElementById('demo-process-btn');
+                        processBtn.style.display = 'inline-block';
+                        processBtn.disabled = false;
+                        processBtn.style.opacity = '1';
+                        processBtn.style.cursor = 'pointer';
+                        
+                        document.getElementById('demo-reset-btn').style.display = 'none';
+                    }
+
+                    // Add CSS animation for spinner
+                    const style = document.createElement('style');
+                    style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+                    document.head.appendChild(style);
+
+                    // Initialize demo
+                    if (document.getElementById('demo-table-body')) {
+                        renderDemoTable(messyDemoData);
+                        updateDemoSummary();
+                    }
+                </script>
+                
+                <div class="project-card">
+                    <div class="project-image" style="background: #1e3a8a; padding: 2rem;">
+                        <div style="text-align: left; color: #60a5fa; font-family: monospace; font-size: 0.9rem;">
+                            <div style="color: #93c5fd;">// TypeScript - Data Processing</div>
+                            <div style="margin-top: 0.5rem;">interface Employee {</div>
+                            <div style="margin-left: 2rem;">id: number;</div>
+                            <div style="margin-left: 2rem;">name: string;</div>
+                            <div style="margin-left: 2rem;">salary: number;</div>
+                            <div>}</div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>TypeScript: Employee Data Validator</h3>
+                        <div class="project-tags">
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Data Validation</span>
+                        </div>
+                        <p><strong>Business Problem:</strong> HR data uploads from various sources contained inconsistent formats and errors.</p>
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>Built TypeScript tool to validate employee data before database import</li>
+                            <li>Implemented type checking and custom validation rules</li>
+                            <li>Created detailed error reports for data quality issues</li>
+                        </ul>
+                        <p><strong>Impact:</strong> Reduced data import errors by 90%, saving 5+ hours per week in manual corrections.</p>
+                        
+                        <div class="code-header">📄 TypeScript Code Sample - Employee Validator</div>
+                        <div class="code-preview">
+<code>interface Employee {
+    id: number;
+    name: string;
+    email: string;
+    department: string;
+    salary: number;
+    hireDate: Date;
+}
+
+class EmployeeValidator {
+    private errors: string[] = [];
+    
+    validate(employee: Employee): boolean {
+        this.errors = [];
+        
+        // Validate ID
+        if (employee.id <= 0) {
+            this.errors.push(`Invalid ID: ${employee.id}`);
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(employee.email)) {
+            this.errors.push(`Invalid email: ${employee.email}`);
+        }
+        
+        // Validate salary range
+        if (employee.salary < 0 || employee.salary > 1000000) {
+            this.errors.push(`Salary out of range: ${employee.salary}`);
+        }
+        
+        // Validate department
+        const validDepts = ['HR', 'IT', 'Finance', 'Sales', 'Marketing'];
+        if (!validDepts.includes(employee.department)) {
+            this.errors.push(`Invalid department: ${employee.department}`);
+        }
+        
+        return this.errors.length === 0;
+    }
+    
+    getErrors(): string[] {
+        return this.errors;
+    }
+}
+
+// Usage example
+const validator = new EmployeeValidator();
+const employee: Employee = {
+    id: 101,
+    name: "John Doe",
+    email: "john.doe@company.com",
+    department: "HR",
+    salary: 75000,
+    hireDate: new Date("2024-01-15")
+};
+
+if (validator.validate(employee)) {
+    console.log("✓ Employee data is valid");
+} else {
+    console.log("✗ Validation errors:", validator.getErrors());
+}</code>
+                        </div>
+                        
+                        <a href="https://github.com/yourusername/typescript-hr-validator" class="btn btn-secondary" target="_blank">View Full Code on GitHub</a>
+                        <a href="#" class="btn">Live Demo</a>
                     </div>
                 </div>
             </div>
