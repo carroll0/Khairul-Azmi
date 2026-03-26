@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Automation Demo - Interactive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .processing {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8">
+    <div class="max-w-6xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-3">
+                Excel VBA/TypeScript Automation Demo
+            </h1>
+            <p class="text-lg text-gray-600">
+                Watch messy HR data transform into structured, professional format instantly
+            </p>
+            <a href="index.html" class="inline-block mt-4 text-indigo-600 hover:text-indigo-800">
+                ← Back to Portfolio
+            </a>
+        </div>
+
+        <!-- Status Badge -->
+        <div class="flex justify-center mb-6">
+            <div id="statusBadge" class="bg-red-100 text-red-800 px-6 py-3 rounded-full font-semibold text-lg">
+                ⚠ Raw Messy Data
+            </div>
+        </div>
+
+        <!-- Excel-like Table Container -->
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-8">
+            <!-- Excel Header -->
+            <div class="bg-gray-100 border-b px-6 py-3 flex items-center gap-3">
+                <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <span id="fileName" class="text-sm text-gray-600 ml-2 font-mono">
+                    employee_data_raw.xlsx
+                </span>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full" id="dataTable">
+                    <thead>
+                        <tr class="bg-indigo-600 text-white">
+                            <th class="px-4 py-3 text-left font-semibold">Employee ID</th>
+                            <th class="px-4 py-3 text-left font-semibold">Name</th>
+                            <th class="px-4 py-3 text-left font-semibold">Department</th>
+                            <th class="px-4 py-3 text-left font-semibold">Salary</th>
+                            <th class="px-4 py-3 text-left font-semibold">Hire Date</th>
+                            <th class="px-4 py-3 text-left font-semibold">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Issues/Success Summary -->
+        <div id="summaryBox" class="mb-8"></div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 justify-center mb-8">
+            <button id="processBtn" onclick="processData()" 
+                class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transition-all transform hover:scale-105 text-lg">
+                ✨ Run Automation Magic
+            </button>
+            <button id="resetBtn" onclick="resetData()" style="display: none;"
+                class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transition-all transform hover:scale-105 text-lg">
+                🔄 Reset to Messy Data
+            </button>
+        </div>
+
+        <!-- What This Does -->
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h2 class="font-bold text-gray-800 mb-4 text-2xl">What This Automation Does:</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-gray-600">
+                <div>
+                    <h3 class="font-semibold text-indigo-600 mb-3 text-lg">📊 Data Cleaning:</h3>
+                    <ul class="space-y-2 ml-5 list-disc">
+                        <li>ID normalization & padding (EMP-XXX format)</li>
+                        <li>Name case correction (Title Case)</li>
+                        <li>Department name standardization</li>
+                        <li>Removes inconsistent formatting</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-indigo-600 mb-3 text-lg">💎 Formatting:</h3>
+                    <ul class="space-y-2 ml-5 list-disc">
+                        <li>Currency formatting with $ and commas</li>
+                        <li>Date standardization (YYYY-MM-DD)</li>
+                        <li>Status field consistency</li>
+                        <li>Professional data presentation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <p class="text-gray-600 italic text-lg">
+                    💡 <strong>Real Impact:</strong> This automation reduced monthly data processing time from 
+                    <span class="text-red-600 font-bold">3 hours</span> to 
+                    <span class="text-green-600 font-bold">30 seconds</span>, 
+                    eliminating manual errors and ensuring consistent data quality across all HR reports.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const messyData = [
+            { id: '001', name: 'john doe', dept: 'hr', salary: '5000', date: '1/15/2024', status: 'active' },
+            { id: '2', name: 'JANE SMITH', dept: 'IT', salary: '6500.00', date: '15-Feb-2024', status: 'Active' },
+            { id: '03', name: 'Bob Johnson', dept: 'finance', salary: '5500', date: '2024/03/10', status: 'ACTIVE' },
+            { id: '4', name: 'alice brown', dept: 'HR', salary: '4800.5', date: '04/01/24', status: 'active' },
+            { id: '005', name: 'Charlie Davis', dept: 'it', salary: '7000', date: '5-15-2024', status: 'Active' },
+            { id: '6', name: 'eve WILSON', dept: 'Finance', salary: '5200', date: '2024-06-20', status: 'ACTIVE' },
+        ];
+
+        const cleanData = [
+            { id: 'EMP-001', name: 'John Doe', dept: 'Human Resources', salary: '$5,000.00', date: '2024-01-15', status: 'Active' },
+            { id: 'EMP-002', name: 'Jane Smith', dept: 'Information Technology', salary: '$6,500.00', date: '2024-02-15', status: 'Active' },
+            { id: 'EMP-003', name: 'Bob Johnson', dept: 'Finance', salary: '$5,500.00', date: '2024-03-10', status: 'Active' },
+            { id: 'EMP-004', name: 'Alice Brown', dept: 'Human Resources', salary: '$4,800.50', date: '2024-04-01', status: 'Active' },
+            { id: 'EMP-005', name: 'Charlie Davis', dept: 'Information Technology', salary: '$7,000.00', date: '2024-05-15', status: 'Active' },
+            { id: 'EMP-006', name: 'Eve Wilson', dept: 'Finance', salary: '$5,200.00', date: '2024-06-20', status: 'Active' },
+        ];
+
+        let isProcessed = false;
+
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach((row, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = `border-b transition-all duration-500 ${
+                    isProcessed ? 'bg-green-50 hover:bg-green-100' : 'bg-red-50 hover:bg-red-100'
+                } fade-in`;
+                tr.style.animationDelay = `${idx * 0.1}s`;
+                
+                tr.innerHTML = `
+                    <td class="px-4 py-3 font-mono ${isProcessed ? 'text-green-800 font-semibold' : 'text-red-600'}">${row.id}</td>
+                    <td class="px-4 py-3 ${isProcessed ? 'font-semibold' : ''}">${row.name}</td>
+                    <td class="px-4 py-3">${row.dept}</td>
+                    <td class="px-4 py-3 font-mono">${row.salary}</td>
+                    <td class="px-4 py-3 font-mono text-sm">${row.date}</td>
+                    <td class="px-4 py-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold ${
+                            isProcessed ? 'bg-green-200 text-green-800' : 'bg-gray-200 text-gray-700'
+                        }">
+                            ${row.status}
+                        </span>
+                    </td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateSummary() {
+            const summaryBox = document.getElementById('summaryBox');
+            
+            if (!isProcessed) {
+                summaryBox.innerHTML = `
+                    <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 fade-in">
+                        <h3 class="font-bold text-red-800 mb-3 text-xl">⚠ Data Quality Issues Detected:</h3>
+                        <ul class="text-red-700 space-y-2 ml-6 list-disc">
+                            <li>Inconsistent ID formatting (001, 2, 03, 4, 005, 6)</li>
+                            <li>Mixed case names (lowercase, UPPERCASE, Title Case, mixed)</li>
+                            <li>Inconsistent department names (hr vs HR vs Human Resources)</li>
+                            <li>Inconsistent salary formatting (5000 vs 6500.00 vs $X,XXX.XX)</li>
+                            <li>Multiple date formats (1/15/2024, 15-Feb-2024, 2024/03/10, 04/01/24)</li>
+                            <li>Inconsistent status capitalization (active vs Active vs ACTIVE)</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                summaryBox.innerHTML = `
+                    <div class="bg-green-50 border-2 border-green-200 rounded-xl p-6 fade-in">
+                        <h3 class="font-bold text-green-800 mb-3 text-xl">✓ Automation Completed Successfully!</h3>
+                        <ul class="text-green-700 space-y-2 ml-6 list-disc">
+                            <li>✓ Standardized all employee IDs to EMP-XXX format</li>
+                            <li>✓ Applied proper name capitalization (Title Case)</li>
+                            <li>✓ Expanded department abbreviations to full names</li>
+                            <li>✓ Formatted all salaries with $ symbol and thousand separators</li>
+                            <li>✓ Standardized all dates to YYYY-MM-DD ISO format</li>
+                            <li>✓ Normalized status field to consistent "Active" format</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        function processData() {
+            const statusBadge = document.getElementById('statusBadge');
+            const processBtn = document.getElementById('processBtn');
+            const fileName = document.getElementById('fileName');
+            
+            statusBadge.innerHTML = '<div class="flex items-center gap-2"><div class="animate-spin rounded-full h-5 w-5 border-b-2 border-yellow-800"></div> Processing data...</div>';
+            statusBadge.className = 'bg-yellow-100 text-yellow-800 px-6 py-3 rounded-full font-semibold text-lg processing';
+            
+            processBtn.disabled = true;
+            processBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                isProcessed = true;
+                renderTable(cleanData);
+                updateSummary();
+                
+                statusBadge.innerHTML = '✓ Data Cleaned & Structured';
+                statusBadge.className = 'bg-green-100 text-green-800 px-6 py-3 rounded-full font-semibold text-lg fade-in';
+                
+                fileName.textContent = 'employee_data_CLEANED.xlsx';
+                
+                document.getElementById('processBtn').style.display = 'none';
+                document.getElementById('resetBtn').style.display = 'inline-block';
+            }, 1500);
+        }
+
+        function resetData() {
+            isProcessed = false;
+            renderTable(messyData);
+            updateSummary();
+            
+            const statusBadge = document.getElementById('statusBadge');
+            statusBadge.innerHTML = '⚠ Raw Messy Data';
+            statusBadge.className = 'bg-red-100 text-red-800 px-6 py-3 rounded-full font-semibold text-lg fade-in';
+            
+            document.getElementById('fileName').textContent = 'employee_data_raw.xlsx';
+            
+            const processBtn = document.getElementById('processBtn');
+            processBtn.style.display = 'inline-block';
+            processBtn.disabled = false;
+            processBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            
+            document.getElementById('resetBtn').style.display = 'none';
+        }
+
+        // Initialize
+        renderTable(messyData);
+        updateSummary();
+    </script>
+</body>
+</html>
